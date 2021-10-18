@@ -556,6 +556,33 @@ header .mobile__nav .burger__menu.open::after {
   .col-md-5 {
     width: 20%;
   }
+  .col-md-10 {
+    width: 10%;
+  }
+  .col-md-20 {
+    width: 20%;
+  }
+  .col-md-30 {
+    width: 30%;
+  }
+  .col-md-40 {
+    width: 40%;
+  }
+  .col-md-50 {
+    width: 50%;
+  }
+  .col-md-60 {
+    width: 60%;
+  }
+  .col-md-70 {
+    width: 70%;
+  }
+  .col-md-80 {
+    width: 80%;
+  }
+  .col-md-90 {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -573,6 +600,33 @@ header .mobile__nav .burger__menu.open::after {
   }
   .col-sm-5 {
     width: 20%;
+  }
+  .col-sm-10 {
+    width: 10%;
+  }
+  .col-sm-20 {
+    width: 20%;
+  }
+  .col-sm-30 {
+    width: 30%;
+  }
+  .col-sm-40 {
+    width: 40%;
+  }
+  .col-sm-50 {
+    width: 50%;
+  }
+  .col-sm-60 {
+    width: 60%;
+  }
+  .col-sm-70 {
+    width: 70%;
+  }
+  .col-sm-80 {
+    width: 80%;
+  }
+  .col-sm-90 {
+    width: 90%;
   }
 }
 
@@ -729,7 +783,7 @@ footer .footer__bottom .icons__social span img {
   footer .footer_cta {
     text-align: center;
   }
-  footer .footer_cta .cta {
+  footer .footer_cta .container .cta {
     text-align: center;
     margin-top: 20px;
   }
@@ -788,12 +842,13 @@ footer .footer__bottom .icons__social span img {
 }
 
 .hero_container {
-  background: url(/la-vista/dist/img/home-hero.png) center center no-repeat;
+  background: url(../img/home-hero.png) center center no-repeat;
   background-size: cover;
   position: relative;
   margin-top: -86px;
   background-color: gray;
-  height: 864px;
+  max-height: 864px;
+  min-height: 812px;
   width: 100%;
   -webkit-box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.15);
           box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.15);
@@ -810,13 +865,14 @@ footer .footer__bottom .icons__social span img {
 
 .hero_container .la_vista {
   max-width: 690px;
+  min-width: 300px;
   width: 50%;
 }
 
 .hero_container .play {
   top: 75%;
   max-width: 120px;
-  min-width: 70px;
+  min-width: 100px;
   width: 10%;
 }
 
@@ -825,18 +881,18 @@ footer .footer__bottom .icons__social span img {
 }
 
 .card_container .card-1 {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(1, 253, 215, 0.445)), to(rgba(3, 7, 250, 0.5))), url(/la-vista/dist/img/home-card-1.png) center center no-repeat;
-  background: linear-gradient(180deg, rgba(1, 253, 215, 0.445) 0%, rgba(3, 7, 250, 0.5) 100%), url(/la-vista/dist/img/home-card-1.png) center center no-repeat;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(1, 253, 215, 0.445)), to(rgba(3, 7, 250, 0.5))), url(../img/home-card-1.png) center center no-repeat;
+  background: linear-gradient(180deg, rgba(1, 253, 215, 0.445) 0%, rgba(3, 7, 250, 0.5) 100%), url(../img/home-card-1.png) center center no-repeat;
 }
 
 .card_container .card-2 {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(1, 253, 215, 0.445)), to(rgba(3, 7, 250, 0.5))), url(/la-vista/dist/img/home-card-2.png) center center no-repeat;
-  background: linear-gradient(180deg, rgba(1, 253, 215, 0.445) 0%, rgba(3, 7, 250, 0.5) 100%), url(/la-vista/dist/img/home-card-2.png) center center no-repeat;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(1, 253, 215, 0.445)), to(rgba(3, 7, 250, 0.5))), url(../img/home-card-2.png) center center no-repeat;
+  background: linear-gradient(180deg, rgba(1, 253, 215, 0.445) 0%, rgba(3, 7, 250, 0.5) 100%), url(../img/home-card-2.png) center center no-repeat;
 }
 
 .card_container .card-3 {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(1, 253, 215, 0.445)), to(rgba(3, 7, 250, 0.5))), url(/la-vista/dist/img/home-card-3.png) center center no-repeat;
-  background: linear-gradient(180deg, rgba(1, 253, 215, 0.445) 0%, rgba(3, 7, 250, 0.5) 100%), url(/la-vista/dist/img/home-card-3.png) center center no-repeat;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(1, 253, 215, 0.445)), to(rgba(3, 7, 250, 0.5))), url(../img/home-card-3.png) center center no-repeat;
+  background: linear-gradient(180deg, rgba(1, 253, 215, 0.445) 0%, rgba(3, 7, 250, 0.5) 100%), url(../img/home-card-3.png) center center no-repeat;
 }
 
 .card_container .card {
@@ -886,6 +942,13 @@ footer .footer__bottom .icons__social span img {
   padding: 50px 0 100px 0;
 }
 
+.amazing_text .heading {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 40px;
+}
+
 .amazing_text .line {
   background-color: #7400B8;
   height: 2px;
@@ -893,7 +956,6 @@ footer .footer__bottom .icons__social span img {
 
 .amazing_text h2 {
   text-align: center;
-  margin-bottom: 40px;
   color: #7400B8;
 }
 
@@ -985,39 +1047,45 @@ footer .footer__bottom .icons__social span img {
   color: #474545;
 }
 
-@media screen and (max-width: 1024px) {
-  .contact_form_container .contact_form {
-    height: 60px;
-    font-size: 28px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .contact_form_container .contact_form {
-    height: 60px;
-    font-size: 24px;
-  }
-}
-
 .contact_form_container .contact_form .consent_group {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-left: 20px;
+  padding-top: 10px;
 }
 
 .contact_form_container .contact_form .consent_group input[type="checkbox"] {
   width: 24px;
   height: 24px;
-  margin-right: 10px;
 }
 
 .contact_form_container .contact_form .consent_group option {
   white-space: pre-wrap;
   font-size: 20px;
+  padding-left: 10px;
 }
 
 .contact_form_container .contact_form .consent_group option a {
   color: red;
+}
+
+@media screen and (max-width: 1024px) {
+  .contact_form_container .container .contact_info {
+    padding-right: 10px;
+  }
+  .contact_form_container .container .contact_form .btn_group {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  .contact_form_container .container .contact_form .button {
+    margin-top: 20px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -1049,8 +1117,12 @@ footer .footer__bottom .icons__social span img {
             justify-content: flex-start;
     margin-bottom: 20px;
   }
+  .contact_form_container .container .contact_form .btn_group .consent_group input[type="checkbox"] {
+    margin-right: 0px;
+    padding-right: 10px;
+  }
   .contact_form_container .container .contact_form .btn_group .consent_group option {
-    width: 90%;
+    padding-left: 10px;
   }
 }
 
@@ -1317,8 +1389,8 @@ footer .footer__bottom .icons__social span img {
 }
 
 .eco_concept {
-  background: -webkit-gradient(linear, left top, right top, from(#48bfe3), to(rgba(72, 191, 227, 0))), url(/la-vista/dist/img/eco-concept.png) center center no-repeat;
-  background: linear-gradient(90deg, #48bfe3 0%, rgba(72, 191, 227, 0) 100%), url(/la-vista/dist/img/eco-concept.png) center center no-repeat;
+  background: -webkit-gradient(linear, left top, right top, from(#48bfe3), to(rgba(72, 191, 227, 0))), url(../img/eco-concept.png) center center no-repeat;
+  background: linear-gradient(90deg, #48bfe3 0%, rgba(72, 191, 227, 0) 100%), url(../img/eco-concept.png) center center no-repeat;
   background-size: cover;
   color: white;
 }

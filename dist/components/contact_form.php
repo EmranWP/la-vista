@@ -32,13 +32,14 @@
                 <input type="text" name="" id="" placeholder="Your Name">
                 <input type="text" name="" id="" placeholder="Your Phone">
                 <div class="btn_group row">
-                    <div class="col-30 col-sm button">
+                    <div class="col-40 col-md col-sm button">
                         <input type="submit" value="Call Me" class="btn secondary">
                     </div>
-                    <div class="consent_group row col-70 col-sm">
+                    <div class="consent_group row col-60 col-md col-sm">
                         <input type="checkbox" name="consent" id="" class="col-10">
-                        <option name="consent" value="" class="col-70">
-                            I agree with processing of my personal data due to <a href="#">Privacy Policy</a>
+                        <option name="consent" value="" class="col-90">
+                            <span>I agree with processing of my personal data due to </span>
+                            <a href="#">Privacy Policy</a>
 
                         </option>
                     </div>

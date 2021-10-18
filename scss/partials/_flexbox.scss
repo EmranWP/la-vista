@@ -46,6 +46,11 @@
   .col-md-5 {
     width: 20%;
   }
+  @for $i from 1 to 10 {
+    .col-md-#{$i * 10} {
+      width: $i * 10%;
+    }
+  }
   
 }
 @include mobile {
@@ -63,6 +68,11 @@
   }
   .col-sm-5 {
     width: 20%;
+  }
+  @for $i from 1 to 10 {
+    .col-sm-#{$i * 10} {
+      width: $i * 10%;
+    }
   }
 }
 

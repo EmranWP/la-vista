@@ -110,10 +110,13 @@ footer {
     footer {
       .#{&}_cta{
         text-align: center;
-        .cta{
+        .container{
+          .cta{
         text-align: center;
         margin-top: 20px;
         }
+        }
+        
         
       }
         .#{&}__menu {
