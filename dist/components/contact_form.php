@@ -36,12 +36,14 @@
                         <input type="submit" value="Call Me" class="btn secondary">
                     </div>
                     <div class="consent_group row col-60 col-md col-sm">
-                        <input type="checkbox" name="consent" id="" class="col-10">
-                        <option name="consent" value="" class="col-90">
-                            <span>I agree with processing of my personal data due to </span>
-                            <a href="#">Privacy Policy</a>
+                        <div class="custom_checkbox col-10">
+                            <input type="checkbox" name="consent" id="">
+                            <span class="checkmark"></span>
+                        </div>
+                        <label for="consent" class="col-90">
+                         I agree with processing of my personal data due to <a href="#">Privacy Policy</a>
+                        </label>
 
-                        </option>
                     </div>
                 </div>
             </div>
