@@ -29,129 +29,519 @@ window.addEventListener("scroll", () => {
   }
 });
 
-//------------- Image Slider -------------//
-const sliderContainer = document.querySelector(
-  ".image_slider .slide_container"
-);
-const imgBox = document.querySelectorAll(".image_slider .img_box");
-const imgBoxActive = document.querySelector(".image_slider .img_box.active");
-const next = document.querySelector(".next");
-const prev = document.querySelector(".prev");
 
-let windowWidth = window.innerWidth;
-
-window.addEventListener("resize", function (event) {
-  if (document.body.clientWidth < 1500 && document.body.clientWidth > 600) {
-    imgWidth = document.body.clientWidth / 4 + 245;
-    activeImgWidth = document.body.clientWidth / 4 + 410;
-    imgBox.forEach((e) => {
-      e.style.minWidth = imgWidth + "px";
-    });
-    imgBoxActive.style.minWidth = activeImgWidth + "px";
+// ========= Video Modals ============== //
+const play = document.querySelector(".play");
+const close = document.querySelector(".video-modal .close");
+const videoModal = document.querySelector(".video-modal");
+const videoModalBox = document.querySelector(".video-modal .box");
+let cName = "";
+const openVideoModal = () => {
+  videoModal.classList.add("active");
+  const videoLink = play.getAttribute("data-link");
+  document.querySelector(".video-modal iframe").setAttribute("src", videoLink);
+  cName = "active";
+};
+const closeVideoModal = () => {
+  document.querySelector(".video-modal iframe").setAttribute("src", "");
+  videoModal.classList.remove("active");
+  cName = "null";
+};
+function makeEvent(className, eventName, eventFunction) {
+  if (className) {
+    className.addEventListener(eventName, eventFunction);
   }
-});
-if (window.innerWidth > 600) {
-  imgWidth = document.body.clientWidth / 4 + 245;
-  activeImgWidth = document.body.clientWidth / 4 + 410;
-  imgBox.forEach((e) => {
-    e.style.minWidth = imgWidth + "px";
-  });
-  imgBoxActive.style.minWidth = activeImgWidth + "px";
 }
 
-// OOP SLIDERS
+document.addEventListener("mouseup", (e) => {
+  if (cName == "active") {
+    if (!videoModalBox.contains(e.target)) {
+      closeVideoModal();
+    }
+  }
+});
+
+makeEvent(play, "click", openVideoModal);
+makeEvent(close, "click", closeVideoModal);
+
+// ========= Caraosel Script ============== //
+
 class imgSlider {
   // Constractor
   constructor(parentClass) {
-    this.next = document.querySelector(parentClass + " .right");
-    this.prev = document.querySelector(parentClass + " .left");
-    this.slides = document.querySelector(parentClass + " .villa_image_slider");
-    this.slide = document.querySelectorAll(
-      parentClass + " .villa_image_slider img"
-    );
-    this.dots = document.querySelectorAll(parentClass + " .dot");
-    this.index = 1;
-    this.crouselTime = 1000;
-
-    this.firstClone = this.slide[0].cloneNode(true);
-    this.lastClone = this.slide[this.slide.length - 1].cloneNode(true);
-    this.firstClone.id = "first-clone";
-    this.lastClone.id = "last-clone";
-    this.slides.append(this.firstClone);
-    this.slides.prepend(this.lastClone);
-    this.sliderWidth = this.slide[this.index].clientWidth;
-    this.slides.style.transform = `translateX(${
-      -this.sliderWidth * this.index
-    }px)`;
-    this.getCurrentSlides = document.querySelectorAll(
-      parentClass + " .villa_image_slider img"
-    );
+    if (document.querySelector(parentClass)) {
+      this.next = document.querySelector(parentClass + " .navigation .right");
+      this.prev = document.querySelector(parentClass + " .navigation .left");
+      this.slide = document.querySelector(parentClass + " .slides");
+      this.slides = document.querySelectorAll(parentClass + " .slide");
+      this.dots = document.querySelectorAll(parentClass + " .dot");
+      this.index = 1;
+      this.crouselTime = 1000;
+      this.slideWidth = "";
+      this.touchStartX = 0;
+      this.touchEndX = 0;
+    }
   }
 
   // ------------ Methods ----------//
-  letsSlide() {
-    this.resetDots = () => {
-      this.dots.forEach((e) => {
-        e.classList.remove("active");
-      });
-    };
-    this.slideToRight = () => {
-      if (this.index >= this.slides.length - 1) return;
-      this.index++;
-      this.slides.style.transform = `translateX(${
-        -this.sliderWidth * this.index
+  letsSlide(parentClass) {
+    if (document.querySelector(parentClass)) {
+      this.getSlides = () => document.querySelectorAll(parentClass + " .slide");
+      this.firstClone = this.slides[0].cloneNode(true);
+      this.lastClone = this.slides[this.slides.length - 1].cloneNode(true);
+      this.firstClone.id = "first-clone";
+      this.lastClone.id = "last-clone";
+      this.slide.append(this.firstClone);
+      this.slide.prepend(this.lastClone);
+      this.slideWidth = this.slides[this.index].clientWidth;
+      this.slide.style.transform = `translateX(${
+        -this.slideWidth * this.index
       }px)`;
-      this.slides.style.transition = "all .5s ease-in";
-      if (this.getCurrentSlides[this.index].id === "first-clone") {
-        this.slides.style.transition = "none";
-        this.index = 1;
-        this.slides.style.transform = `translateX(${
-          -this.sliderWidth * this.index
-        }px)`;
-      }
-      this.resetDots();
-      this.dots[this.index - 1].classList.add("active");
-    };
-    this.slideToLeft = () => {
-      this.index--;
-      this.slides.style.transform = `translateX(${
-        -this.sliderWidth * this.index
-      }px)`;
-      this.slides.style.transition = "all .5s ease-in-out";
-      if (this.getCurrentSlides[this.index].id === "last-clone") {
-        this.slides.style.transition = "none";
-        this.index = this.getCurrentSlides.length - 2;
-        this.slides.style.transform = `translateX(${
-          -this.sliderWidth * this.index
-        }px)`;
-      }
-      this.resetDots();
-      this.dots[this.index - 1].classList.add("active");
-    };
-    this.dotsEvent = () => {
-      this.dots.forEach((dot) => {
-        dot.addEventListener("click", () => {
-          this.resetDots();
-          this.slides.style.transform = `translateX(${
-            -this.sliderWidth * dot.getAttribute("data-pos")
-          }px)`;
-
-          dot.classList.add("active");
+      this.startSlide = () => {
+        this.slideId = setInterval(() => {
+          this.moveToNextSlide();
+        }, 1000);
+      };
+      this.resetDots = () => {
+        this.dots.forEach((e) => {
+          e.classList.remove("active");
         });
-      });
-    };
+      };
 
-    this.autoCarousel = () => {
-      setInterval(() => {
-        this.slideToRight();
-      }, this.crouselTime);
-    };
-    this.next.addEventListener("click", this.slideToRight);
-    this.prev.addEventListener("click", this.slideToLeft);
-    this.dotsEvent();
-    // this.autoCarousel();
+      this.slide.addEventListener("transitionend", () => {
+        this.slides = this.getSlides();
+        if (this.slides[this.index].id === this.firstClone.id) {
+          this.slide.style.transition = "none";
+          this.index = 1;
+          this.slide.style.transform = `translateX(${
+            -this.slideWidth * this.index
+          }px)`;
+        }
+
+        if (this.slides[this.index].id === this.lastClone.id) {
+          this.slide.style.transition = "none";
+          this.index = this.slides.length - 2;
+          this.slide.style.transform = `translateX(${
+            -this.slideWidth * this.index
+          }px)`;
+        }
+      });
+
+      this.moveToNextSlide = () => {
+        this.slides = this.getSlides();
+        if (this.index >= this.slides.length - 1) return;
+        this.index++;
+        this.slideWidth = this.slides[this.index].clientWidth;
+        this.slide.style.transition = ".7s ease-out";
+        this.slide.style.transform = `translateX(${
+          -this.slideWidth * this.index
+        }px)`;
+        this.resetDots();
+        if (this.index > this.slides.length - 2) {
+          this.dots[this.index - this.dots.length - 1].classList.add("active");
+        } else {
+          this.dots[this.index - 1].classList.add("active");
+        }
+      };
+
+      this.moveToPreviousSlide = () => {
+        this.slides = this.getSlides();
+        this.slideWidth = this.slides[this.index].clientWidth;
+        if (this.index <= 0) return;
+        this.index--;
+        this.slide.style.transition = ".7s ease-out";
+        this.slide.style.transform = `translateX(${
+          -this.slideWidth * this.index
+        }px)`;
+        this.resetDots();
+        if (this.index == 0) {
+          this.dots[this.dots.length - 1].classList.add("active");
+        } else {
+          this.dots[this.index - 1].classList.add("active");
+        }
+      };
+
+      this.dotsEvent = () => {
+        this.dots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            this.resetDots();
+            this.index = dot.getAttribute("data-pos");
+            this.slide.style.transform = `translateX(${
+              -this.slideWidth * this.index
+            }px)`;
+
+            dot.classList.add("active");
+          });
+        });
+      };
+
+      this.next.addEventListener("click", this.moveToNextSlide);
+      this.prev.addEventListener("click", this.moveToPreviousSlide);
+      this.dotsEvent();
+      // this.startSlide();
+      // ============ Touch Event ================ //
+      this.slideOnTouch = () => {
+        if (this.touchStartX > this.touchEndX) {
+          this.moveToNextSlide();
+        }
+        if (this.touchStartX < this.touchEndX) {
+          this.moveToPreviousSlide();
+        }
+      };
+      this.slide.addEventListener("touchstart", (event) => {
+        this.touchStartX = event.touches[0].screenX;
+      });
+      this.slide.addEventListener("touchend", (event) => {
+        this.touchEndX = event.changedTouches[0].screenX;
+        this.slideOnTouch();
+      });
+      window.addEventListener('resize', ()=>{
+        this.slideWidth = this.slides[this.index].clientWidth;
+        this.slide.style.transform = `translateX(${
+          -this.slideWidth * this.index
+        }px)`;
+      })
+    }
+  }
+  letsSlide2(parentClass) {
+    if (document.querySelector(parentClass)) {
+      this.startSlide = () => {
+        this.slideId = setInterval(() => {
+          this.moveToNextSlide();
+        }, 1000);
+      };
+      this.resetDots = () => {
+        this.dots.forEach((e) => {
+          e.classList.remove("active");
+        });
+      };
+      this.getSlides = () => document.querySelectorAll(parentClass + " .slide");
+
+      this.moveToNextSlide = () => {
+        console.log("clicked");
+        this.slides = this.getSlides();
+        this.index++;
+
+        this.firstClone = this.slides[0].cloneNode(true);
+        this.firstClone.classList.add("first-clone");
+        this.slide.append(this.firstClone);
+        this.slide.removeChild(this.slide.firstElementChild);
+        this.slides.forEach((e) => {
+          e.classList.remove("active");
+        });
+        this.slides[2].classList.add("active");
+      };
+
+      this.moveToPreviousSlide = () => {
+        this.slides = this.getSlides();
+        this.index--;
+        this.slides.forEach((e) => {
+          e.classList.remove("active");
+        });
+        this.lastClone = this.slides[this.slides.length - 1].cloneNode(true);
+        this.slide.prepend(this.lastClone);
+        this.slide.removeChild(this.slide.lastElementChild);
+
+        this.slides[0].classList.add("active");
+      };
+
+      this.next.addEventListener("click", this.moveToNextSlide);
+      this.prev.addEventListener("click", this.moveToPreviousSlide);
+      // this.startSlide();
+    }
   }
 }
 
 const slide1 = new imgSlider(".villa_type");
-slide1.letsSlide();
+slide1.letsSlide(".villa_type");
+
+const partners = new imgSlider(".partners");
+partners.letsSlide(".partners");
+
+const testimonial = new imgSlider(".testimonial");
+testimonial.letsSlide(".testimonial");
+
+if (window.innerWidth < 768) {
+  const team = new imgSlider(".team_container");
+  team.letsSlide(".team_container");
+}
+const imageSlider = new imgSlider(".image_slider1");
+imageSlider.letsSlide2(".image_slider1");
+const imageSlider2 = new imgSlider(".image_slider2");
+imageSlider2.letsSlide2(".image_slider2");
+
+// ============== Text Slider ======================= //
+
+class textSlider {
+  constructor(parentClass) {
+    this.navItem = document.querySelectorAll(parentClass + " .nav-items");
+    this.navItems = document.querySelectorAll(parentClass + " .nav-item");
+    this.colorBar = document.querySelector(parentClass + " .purple");
+    this.price = document.querySelectorAll(parentClass + " .price span");
+    this.info = document.querySelectorAll(parentClass + " .einfo_container");
+    this.description = document.querySelectorAll(parentClass + " .text p");
+    this.details = document.querySelectorAll(
+      parentClass + " .details_container"
+    );
+    this.next = document.querySelector(parentClass + " .navigation .next");
+    this.prev = document.querySelector(parentClass + " .navigation .prev");
+    this.barColored = document.querySelector(parentClass + " .bar.colored");
+    this.resetActiveElements = (eName) => {
+      eName.forEach((e) => {
+        e.classList.remove("active");
+      });
+    };
+    this.index = 0;
+  }
+
+  changeText(parentClass) {
+    if (document.querySelector(parentClass)) {
+      this.navItems.forEach((navItem, index) => {
+        navItem.addEventListener("click", () => {
+          this.resetActiveElements(this.description);
+          this.description[index].classList.add("active");
+          this.resetActiveElements(this.navItems);
+          this.navItems[index].classList.add("active");
+          this.colorBar.style.left = `${50 * index}%`;
+          this.colorBar.style.transform = `translateX(${-50 * index}%)`;
+          this.resetActiveElements(this.price);
+          this.price[index].classList.add("active");
+          this.resetActiveElements(this.info);
+          this.info[index].classList.add("active");
+        });
+      });
+    }
+  }
+  roomDetailsShow(parentClass) {
+    if (document.querySelector(parentClass)) {
+      this.navItems.forEach((navItem, index) => {
+        navItem.addEventListener("click", () => {
+          this.resetActiveElements(this.navItems);
+          this.navItems[index].classList.add("active");
+          this.resetActiveElements(this.details);
+          this.details[index].classList.add("active");
+        });
+      });
+    }
+  }
+
+  progressShow(parentClass) {
+    if (document.querySelector(parentClass)) {
+      let index = 0;
+      this.navItems.forEach((navItem, i) => {
+        navItem.addEventListener("click", () => {
+          this.index = i;
+          console.log(this.index);
+          this.resetActiveElements(this.navItems);
+
+          this.resetActiveElements(this.details);
+          this.details[i].classList.add("active");
+          for (let i = 0; i < this.index + 1; i++) {
+            this.navItems[i].classList.add("active");
+          }
+          this.barColored.style.width = `${this.index * 25}%`;
+        });
+      });
+
+      this.next.addEventListener("click", () => {
+        if (this.index == this.details.length - 1) {
+          this.index = -1;
+          this.resetActiveElements(this.navItems);
+        }
+        this.index++;
+        this.resetActiveElements(this.details);
+        this.details[this.index].classList.add("active");
+        this.navItems[this.index].classList.add("active");
+        this.barColored.style.width = `${this.index * 25}%`;
+      });
+
+      this.prev.addEventListener("click", () => {
+        console.log("clicked");
+        this.navItems[this.index].classList.remove("active");
+        this.index--;
+        if (this.index < 0) {
+          this.index = this.details.length - 1;
+          this.resetActiveElements(this.navItems);
+          this.navItems.forEach((e) => {
+            e.classList.add("active");
+          });
+        }
+        this.resetActiveElements(this.details);
+        this.details[this.index].classList.add("active");
+        this.barColored.style.width = `${this.index * 25}%`;
+      });
+    }
+  }
+}
+
+const villaType = new textSlider(".villa_type");
+villaType.changeText(".villa_type");
+
+const villaRoom = new textSlider(".room_structure");
+villaRoom.roomDetailsShow(".room_structure");
+
+const progress = new textSlider(".progress");
+progress.progressShow(".progress");
+
+// ================== Image LightBox  =======================//
+
+class imgLightbox {
+  constructor(parentClass) {
+    this.getAllSlides = document.querySelectorAll(parentClass + " .slide");
+    this.lightBox = document.querySelector(".image-ligthbox");
+    this.lightBoxMain = document.querySelector(".img_box_main .slides");
+    this.thumbControl = document.querySelector(".thumbnail_control");
+    this.close = document.querySelector(".close");
+    this.sliderImage = [];
+    this.thumbImage = [];
+    this.sliderWidth = "";
+    console.log(this.sliderImage);
+  }
+
+  openLightBox() {
+    if (this.getAllSlides.length > 0) {
+      for (let i = 1; i < this.getAllSlides.length - 1; i++) {
+        this.sliderImage.push(this.getAllSlides[i].cloneNode());
+        this.thumbImage.push(this.getAllSlides[i].cloneNode());
+      }
+      for (let i = 0; i < this.sliderImage.length; i++) {
+        this.thumbControl.appendChild(this.thumbImage[i]);
+        this.lightBoxMain.appendChild(this.sliderImage[i]);
+      }
+      this.getAllSlides.forEach((slide, idx) => {
+        slide.addEventListener("click", () => {
+          this.lightBox.style.display = "block";
+          this.sliderWidth = document.querySelectorAll(".img_box_main .slide")[
+            idx
+          ].clientWidth;
+          this.lightBoxMain.style.transform = `translateX(${-this
+            .sliderWidth}px)`;
+        });
+      });
+    }
+  }
+  closeLightBox() {
+    if (this.getAllSlides.length > 0) {
+      this.close.addEventListener("click", () => {
+        this.lightBox.style.display = "none";
+      });
+    }
+  }
+}
+const imageLightBox = new imgLightbox(".villa_type");
+imageLightBox.openLightBox(".villa_type");
+imageLightBox.closeLightBox(".villa_type");
+
+class lightBoxSlider extends imgSlider {
+  constructor(parentClass) {
+    super(parentClass);
+    this.thumbControl = document.querySelectorAll(
+      ".image-ligthbox .thumbnail_control .slide"
+    );
+    this.thumbControl.forEach((e, idx) => {
+      e.addEventListener("click", () => {
+        this.index = idx;
+        this.moveToNextSlide();
+      });
+    });
+  }
+}
+// const lightBoxImageSlide = new imgSlider(".img_box_main");
+// lightBoxImageSlide.letsSlide(".img_box_main");
+
+const lightBoxSlider1 = new lightBoxSlider(".img_box_main");
+lightBoxSlider1.letsSlide(".img_box_main");
+
+// ========= Info Modals ============== //
+class propertyShow{
+  constructor(parentClass){
+    this.propertyslides = document.querySelectorAll(parentClass + " .img_box");
+    this.propertyslide = document.querySelector(parentClass + " .property_main");
+    this.exits = document.querySelectorAll(parentClass + " .exit");
+    this.infoIcon = document.querySelectorAll(parentClass + " .icon.info");
+    this.thumSlide = document.querySelectorAll(parentClass + " .property_thumb");
+    this.thumSlides = document.querySelectorAll(parentClass + " .property_thumb img");
+    this.infoAccordions = document.querySelectorAll(parentClass + " .accordion");
+    this.accordionSlide = document.querySelector(parentClass + " .accordion_container");
+    this.accordionSlides = document.querySelectorAll(parentClass + " .accordion_slider");
+    this.next = document.querySelector(parentClass + " .next");
+    this.prev = document.querySelector(parentClass + " .prev");
+    
+    this.index = 0;
+    this.point = 0;
+  }
+
+  showInfoModal(){
+    this.openAccordion = (idx)=>{
+      this.point = idx;
+      this.infoAccordions.forEach(e => {
+        e.classList.remove('open');
+      });
+      this.infoAccordions[this.point].classList.add('open');
+    }
+    this.infoIcon.forEach((icon, idx)=> {
+      icon.addEventListener('mouseenter', ()=>{
+        icon.nextElementSibling.classList.add('active');
+      })
+      icon.addEventListener('mouseleave', ()=>{
+        icon.nextElementSibling.classList.remove('active');
+      })
+      icon.addEventListener('click', ()=>{
+        this.openAccordion(idx);
+      })
+    });
+    this.infoAccordions.forEach((acc, idx) => {
+      acc.addEventListener('click', ()=>{
+        this.openAccordion(idx);
+      })
+    });
+  }
+  showInProperty(){
+    if (this.propertyslide) {
+      this.slideToRight = ()=>{
+        this.propertyslide.style.transition = 'all .5s ease-in-out';
+        this.slideWidth = this.propertyslides[this.index].clientWidth;
+        this.propertyslide.style.transform = `translateX(${
+          -this.slideWidth * this.index
+        }px)`;
+        this.contentWidth = this.accordionSlides[this.index].clientWidth;
+        this.accordionSlide.style.transform = `translateX(${
+          -this.contentWidth * this.index
+        }px)`;
+      }
+      this.exits.forEach(exit => {
+        exit.addEventListener('click', ()=>{
+          this.index++;
+          if (this.index > this.propertyslides.length - 1) {
+            this.index = 0;
+          }
+          this.slideToRight();
+        })
+      });
+
+      this.thumSlides.forEach((thum, idx) => {
+        thum.addEventListener('click', ()=>{
+          this.index = idx;
+          this.slideToRight();
+        })
+      });
+      this.next.addEventListener('click', ()=>{
+        this.index++;
+          if (this.index > this.propertyslides.length - 1) {
+            this.index = 0;
+          }
+          this.slideToRight();
+      })
+      this.prev.addEventListener('click', ()=>{
+        this.index--;
+          if (this.index < 0) {
+            this.index = this.propertyslides.length - 1;
+          }
+          this.slideToRight();
+      })
+    }
+  }
+}
+const propertyShow1 = new propertyShow(".property_show");
+propertyShow1.showInProperty();
+propertyShow1.showInfoModal();

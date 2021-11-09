@@ -7,7 +7,9 @@ $heading = 'Pay in bitcoin ';
 $sub_heading = 'or any other cryptocurrency';
 $background = 'bitcoin-hero.png';
 include './components/hero.php';
+include './components/video_modal.php';
 ?>
+
 <div class="payment_step">
     <div class="container">
         <div class="background one">
@@ -42,8 +44,8 @@ include './components/hero.php';
             <h2>Some text about it</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas nulla et sollicitudin posuere. Maecenas libero odio, iaculis sit amet ipsum non, rutrum porttitor sem.</p>
             <div class="video row">
-                <div class="play">
-                    <img src="./img/play1.png" alt="">
+                <div class="play" data-link="https://www.youtube.com/embed/TYwgdz51gRY">
+                    <img src="./img/play1.png" alt="" >
                 </div>
                 <div class="text">
                     <p>To more info - watch the video</p>

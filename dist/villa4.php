@@ -1,71 +1,63 @@
 <?php
 include './assets/header.php';
 include './assets/nav.php';
-include './components/image_lightbox.php';
+include './components/image_lightbox.php'
 ?>
 <div class="villa_type container">
     <div class="row villa_container">
         <div class="villa_image_sliders col-50">
-            <div class="villa_slider_container">
-                <div class="villa_image_slider slides row">
-                    <img class="slide" src="./img/img/villa-image-1.png" alt="">
-                    <img class="slide" src="./img/img/villa-image-2.jpg" alt="">
-                    <img class="slide" src="./img/img/villa-image-3.jpg" alt="">
-                </div>
+            <div class="villa_image_slider slides row">
+                <img class="slide" src="./img/img/villa-image-1.png" alt="">
+                <img class="slide" src="./img/img/villa-image-2.jpg" alt="">
+                <img class="slide" src="./img/img/villa-image-3.jpg" alt="">
             </div>
 
             <?php include './components/navigation.php'; ?>
         </div>
         <div class="villa_slider col-50">
-            <h2>VILLA TYPE 1</h2>
+            <div class="villa__type row">
+                <h2 class="">VILLA TYPE 4</h2>
+                <div class="sold">Sold Item</div>
+            </div>
             <div class="details row">
-                <div class="slider_bars nav-items col-60">
+                <div class="slider_bars col-60">
                     <div class="bars row">
-                        <div class="bar col-3 nav-item">Basic</div>
-                        <div class="bar col-3 nav-item active">Furnish</div>
-                        <div class="bar col-3 nav-item">Full</div>
+                        <div class="bar col-3">Basic</div>
+                        <div class="bar col-3 active">Furnish</div>
+                        <div class="bar col-3">Full</div>
                     </div>
                     <div class="colorbar">
                         <div class="white"></div>
                         <div class="purple"></div>
                     </div>
                     <div class="price">
-                        <span class="active">$100 000/ 1.84 BTC</span>
-                        <span>$200 000/ 2.84 BTC</span>
-                        <span>$300 000/ 3.84 BTC</span>
+                        <span>$100 000/ 1.84 BTC</span>
                     </div>
                 </div>
-                <div class="einfo col-40">
-                    <div class="einfo_container row active">
-                        <div class="square col-2">
-                            Square <br> 1000
-                        </div>
-                        <div class="rooms col-2">
-                            Rooms <br> 4
-                        </div>
+                <div class="einfo row col-40">
+                    <div class="square col-2">
+                        Square <br> 1000
                     </div>
-                    <div class="einfo_container row">
-                        <div class="square col-2">
-                            Square <br> 2000
-                        </div>
-                        <div class="rooms col-2">
-                            Rooms <br> 5
-                        </div>
-                    </div>
-                    <div class="einfo_container row">
-                        <div class="square col-2">
-                            Square <br> 1500
-                        </div>
-                        <div class="rooms col-2">
-                            Rooms <br> 3
-                        </div>
+                    <div class="rooms col-2">
+                        Rooms <br> 4
                     </div>
                 </div>
             </div>
-            <div class="text">
-                <p class="active">Decription. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas nulla et sollicitudin posuere. Maecenas libero odio, iaculis sit amet ipsum non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas nulla et sollicitudin posuere. Maecenas libero odio, iaculis sit amet ipsum non, rutrum porttitor sem. Nulla facilisi. Integer lacinia mattis</p>
-                <p>Eecription. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas nulla et sollicitudin posuere. Maecenas libero odio, iaculis sit amet ipsum non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas nulla et sollicitudin posuere. Maecenas libero odio, iaculis sit amet ipsum non, rutrum porttitor sem. Nulla facilisi. Integer lacinia mattis</p>
-                <p>Fecription. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas nulla et sollicitudin posuere. Maecenas libero odio, iaculis sit amet ipsum non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas nulla et sollicitudin posuere. Maecenas libero odio, iaculis sit amet ipsum non, rutrum porttitor sem. Nulla facilisi. Integer lacinia mattis</p>
+            <div class="sold_text">
+                <p>
+                    This type of villa is already sold out. You can choose other options.
+                </p>
+            </div>
+            <div class="other_type row">
+                <div class="type">
+                    TYPE1
+                </div>
+                <div class="type">
+                    TYPE2
+                </div>
+                <div class="type">
+                    TYPE3
+                </div>
             </div>
         </div>
     </div>

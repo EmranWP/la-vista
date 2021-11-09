@@ -1,7 +1,8 @@
 <header>
     <div class="container row">
         <a href="./">
-            <div class="logo"><img src="./img/logo.png" alt="" srcset="">
+            <div class="logo"><img src="./img/logo-blue.svg" alt="" srcset="">
+
         </a>
     </div>
     <nav>
@@ -12,6 +13,7 @@
                     <li><a href="./villa1.php">Villa 1</a></li>
                     <li><a href="./villa1.php">Villa 2</a></li>
                     <li><a href="./villa1.php">Villa 3</a></li>
+                    <li><a href="./villa4.php">Villa 4</a></li>
                 </ul>
             </li>
             <li><a href="./location.php">Location</a></li>
@@ -43,6 +45,7 @@
                 <li><a href="./villa1.php">Villa 1</a></li>
                 <li><a href="./villa1.php">Villa 2</a></li>
                 <li><a href="./villa1.php">Villa 3</a></li>
+                <li><a href="./villa4.php">Villa 4</a></li>
             </ul>
         </li>
         <li><a href="./location.php">Location</a></li>
