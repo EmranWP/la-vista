@@ -77,19 +77,24 @@
 }
 
 .container{
-  max-width: 1300px;
+  max-width: 1400px;
   margin: auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 @include  tablet {
   .container{
-    max-width: 924px;
+    max-width: 1024px;
   }
   
 }
 @include  mobile {
   .container{
-    max-width: 500px;
+    max-width: 600px;
+    padding: 0 20px;
   }
-  
+}
+@include break_point(400px){
+  .container{
+    padding: 0 10px;
+  }
 }

@@ -2,11 +2,23 @@
 @import './partials/config';
 @import './partials/font';
 @import './partials/button';
+@import './partials/navigation';
 @import './partials/nav';
 @import './partials/flexbox';
 @import './partials/footer';
+@import './partials/video_modal';
+@import './partials/image_lightbox';
 
 
 // All page css files
 @import './pages/home';
+@import './pages/villa';
+@import './pages/about-us';
+@import './pages/bitcoin';
+
+// Components
+@import './partials/hero';
+@import './partials/maps';
+@import './partials/info';
+@import './partials/property';
 

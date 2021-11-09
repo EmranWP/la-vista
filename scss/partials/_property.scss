@@ -1,0 +1,354 @@
+.property_show {
+  .container {
+    padding: 0;
+    overflow: hidden;
+  }
+  .property_main {
+    position: relative;
+    width: 100%;
+    max-height: 795px;
+    aspect-ratio: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    .img_box {
+      position: relative;
+      min-width: 100%;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .icon {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      padding: 20px;
+      border: 1px solid white;
+      border-radius: 50px;
+      background-color: rgba(255, 255, 255, 0.411);
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: white;
+        svg {
+          color: $secondary-color;
+        }
+      }
+      svg {
+        color: white;
+        width: 100%;
+        height: 100%;
+      }
+      .num {
+        font-size: 18px;
+        font-weight: 600;
+        color: white;
+        margin-left: 5px;
+        line-height: 18px;
+        display: none;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        border-bottom: 4px dashed white;
+        width: 0;
+        transition: width 0.5s ease-in-out;
+        top: 50%;
+        right: 101%;
+      }
+      &.icon-1 {
+        top: 21%;
+        left: 47%;
+        &:hover::before {
+          width: 20vw;
+        }
+        & + .icon_modal {
+          top: 5%;
+          left: 5%;
+        }
+      }
+      &.icon-2 {
+        right: 17%;
+        top: 25%;
+
+        &:hover::before {
+          width: 20vw;
+        }
+        & + .icon_modal {
+          top: 5%;
+          left: 30%;
+        }
+      }
+      &.icon-3 {
+        top: 50%;
+        right: 28%;
+        &::before {
+          top: 50%;
+          right: 101%;
+        }
+        &:hover::before {
+          width: 20vw;
+        }
+        & + .icon_modal {
+          top: 20%;
+          left: 20%;
+        }
+      }
+      &.icon-4 {
+        top: 63%;
+        left: 15%;
+        &::before {
+          top: 50%;
+          right: unset;
+          left: 100%;
+        }
+        &:hover::before {
+          width: 20vw;
+        }
+        & + .icon_modal {
+          top: 20%;
+          left: unset;
+          right: 29%;
+        }
+      }
+      &.exit {
+        bottom: 10%;
+        left: 49%;
+      }
+    }
+  }
+  .property_bottom {
+    position: relative;
+    .property_thumb {
+      flex-wrap: nowrap;
+      overflow: hidden;
+      justify-content: flex-start;
+      img {
+        min-width: 25vw;
+      }
+    }
+    .navigation {
+      width: 100%;
+      padding: 0 40px;
+
+      .nav_icon {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        padding: 13px 0;
+        text-align: center;
+        background: #ffffff;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        display: inline-block;
+        cursor: pointer;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .next {
+        right: 0;
+      }
+      .prev {
+        left: 0;
+        img {
+          transform: rotate(-180deg);
+          line-height: 70px;
+        }
+      }
+    }
+  }
+  .icon_modal {
+    background-color: white;
+    position: absolute;
+    max-width: 372px;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: -1;
+    opacity: 0;
+    // transition: all .5s ease-in-out;
+    transition-delay: 0.4s;
+
+    &.active {
+      z-index: 1;
+      opacity: 1;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@include break_point_min(1440px) {
+  .property_show {
+    .property_bottom {
+      .property_thumb {
+        img {
+          min-width: 25%;
+        }
+      }
+    }
+  }
+}
+@include tablet {
+  .property_show {
+    .property_main {
+      .icon {
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+      }
+      .icon_modal {
+        padding: 20px 10px;
+        width: 30vw;
+        h3 {
+          font-size: 4vw;
+          line-height: 4vw;
+        }
+        p {
+          font-size: 2vw;
+        }
+      }
+    }
+    .property_bottom {
+      .navigation {
+        .nav_icon {
+          width: 60px;
+          height: 60px;
+          padding: 12px;
+          img {
+            width: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+@include mobile {
+  .property_show {
+    .property_main {
+      .icon {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        .num {
+          display: block;
+        }
+        &:hover .num {
+          color: #a1a1a1;
+        }
+        svg {
+          display: none;
+        }
+        &::before {
+          display: none;
+        }
+      }
+      .icon_modal {
+        display: none;
+      }
+    }
+    .property_bottom {
+      .property_thumb {
+        img {
+          min-width: 33vw;
+        }
+      }
+      .navigation {
+        .nav_icon {
+          width: 40px;
+          height: 40px;
+          padding: 5px;
+          img {
+            width: 15px;
+          }
+          &.prev {
+            visibility: hidden;
+          }
+        }
+      }
+    }
+  }
+}
+.property_show_mobile {
+  width: 100%;
+  display: none;
+  padding-top: 16px;
+  overflow: hidden;
+  .accordion_container{
+    display: flex;
+    flex-wrap: nowrap;
+    .accordion_slider{
+      min-width: 100%;
+    }
+  }
+
+  .accordion {
+    border-top: 1px solid #dfdfdf;
+    position: relative;
+    &.open {
+      .image {
+        display: block;
+        width: 40%;
+      }
+      .text {
+        width: 60%;
+        p {
+          display: block;
+        }
+      }
+      svg {
+        width: 14px;
+        transform: translateY(-50%) rotate(0deg);
+      }
+    }
+    &:last-child {
+      border-bottom: 1px solid #dfdfdf;
+    }
+    .image {
+      margin-bottom: -5px;
+      display: none;
+      width: 0;
+      img {
+        width: 100%;
+      }
+    }
+    .text {
+      padding: 16px;
+      padding-right: 35px;
+      width: 100%;
+      h4 {
+        font-size: 20px;
+        margin-bottom: 5px;
+        span {
+          border: 1px solid #a1a1a1;
+          background-color: white;
+          border-radius: 50px;
+          padding: 1px 10px;
+          height: 32px;
+          width: 32px;
+        }
+      }
+      p {
+        font-size: 14px;
+        display: none;
+      }
+    }
+    svg {
+      width: 14px;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+    }
+  }
+}
+@include mobile {
+  .property_show_mobile {
+    display: block;
+  }
+}

@@ -6,7 +6,11 @@
   border-radius: 5px;
   vertical-align: middle;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
-  @include transition-ease;
+  transition: background .5s ease;
+}
+.btn:active{
+  box-shadow: none;
+  transform: translateY(2px);
 }
 .btn.small {
   width: 200px;
@@ -28,9 +32,12 @@
   line-height: 80px;
   font-size: 32px;
   background-color: $primary-color;
-  border-color: $primary-color;
+  border: 2px solid $primary-color;
   color: white;
   font-weight: 500;
+}
+.btn.primary:hover {
+  font-weight: 700;
 }
 .btn.secondary {
   width: 200px;

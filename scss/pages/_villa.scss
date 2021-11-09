@@ -1,0 +1,495 @@
+.villa_type {
+  &.container {
+    padding: 0;
+    align-items: flex-start;
+  }
+  .villa_container {
+    position: relative;
+    // background: url(../img/villa-type-background.png) center center no-repeat;
+    align-items: flex-start;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(128.33deg, #72efdd -0.42%, #5e60ce 63.1%);
+      opacity: 0.85;
+      transform: rotate(-180deg);
+      z-index: -1;
+    }
+  }
+  .sold {
+    display: none;
+  }
+  .villa_image_sliders {
+    position: relative;
+    overflow: hidden;
+    .villa_image_slider {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      img {
+        min-width: 100%;
+      }
+    }
+    .navigation {
+      margin-bottom: -6px;
+      .arrows {
+        .arrow {
+          width: 40px;
+          height: 40px;
+          padding: 0px;
+          &.left {
+            left: 30px;
+          }
+          &.right {
+            right: 30px;
+          }
+          svg {
+            width: 16px;
+          }
+        }
+      }
+
+      .dots {
+        top: -40px;
+      }
+    }
+    .villa_image_slider {
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .villa_slider {
+    height: 100%;
+    padding: 5.2vw 3vw 0vw 3vw;
+    padding-left: 20px;
+    position: relative;
+    color: white;
+    // max-height: 487px;
+    // height: 487px;
+    h2 {
+      font-size: 4.7vw;
+      line-height: 50px;
+      width: 70%;
+    }
+    .sold {
+      font-size: 24px;
+      text-align: center;
+      background: #ffffff26;
+      color: white;
+      padding: 10px 0px;
+      font-weight: 700;
+      text-transform: uppercase;
+      width: 30%;
+      border: 2px solid white;
+    }
+    .details {
+      padding: 3.3vw 0;
+      .slider_bars {
+        position: relative;
+        .white {
+          content: "";
+          position: absolute;
+          top: 40px;
+          left: 0;
+          width: 100%;
+          height: 7px;
+          border-radius: 20px;
+          background-color: white;
+          z-index: 1;
+        }
+        .purple {
+          content: "";
+          position: absolute;
+          top: 40px;
+          left: 50%;
+          width: 33.33%;
+          height: 7px;
+          border-radius: 20px;
+          background-color: #7400b8;
+          z-index: 2;
+          transform: translate(-50%);
+        }
+        .bars {
+          margin-bottom: 47px;
+          text-align: center;
+          .bar {
+            font-size: 24px;
+            cursor: pointer;
+
+            &.active {
+              color: $primary-color;
+              font-weight: 700;
+            }
+          }
+        }
+        .price {
+          text-align: center;
+          font-size: 18px;
+          color: $primary-color;
+          font-weight: 700;
+
+          span {
+            display: none;
+            &.active {
+              display: block;
+            }
+          }
+        }
+      }
+      .einfo {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        .einfo_container {
+          display: none;
+          &.active {
+            display: flex;
+          }
+        }
+      }
+    }
+    .text {
+      p {
+        font-size: 1.37vw;
+        line-height: 1.5rem;
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+    }
+    .sold_text {
+      margin-top: -20px;
+      p {
+        font-size: 28px;
+        line-height: 2.5rem;
+      }
+    }
+    .other_type {
+      margin-top: 30px;
+      flex-wrap: nowrap;
+      justify-content: center;
+      .type {
+        cursor: pointer;
+        padding: 20px;
+        margin-right: 20px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: white;
+        // border: 2px solid white;
+        color: $secondary-color;
+        font-weight: 500;
+        box-shadow: inset -2px -4px 9px #0000001c;
+        font-size: 24px;
+        font-weight: bold;
+        &:hover {
+          color: $primary-color;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@include tablet {
+  .villa_type {
+    .villa_slider {
+      padding: 29px 20px 19px 20px;
+      h2 {
+        font-size: 4.9vw;
+      }
+      .details {
+        padding: 2vw 0;
+        .slider_bars {
+          &::after {
+            top: 30px;
+          }
+          &::before {
+            top: 30px;
+          }
+          .bars {
+            margin-bottom: 30px;
+            .bar {
+              font-size: 20px;
+              &.active {
+                font-weight: 600px;
+              }
+            }
+          }
+        }
+      }
+      .text {
+        p {
+          font-size: 1.8vw;
+        }
+      }
+    }
+  }
+}
+@include break-point(958px) {
+  .villa_image_sliders {
+    width: 100%;
+    .sold {
+      position: absolute;
+      display: block;
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+      text-align: center;
+      background: #ffffff26;
+      color: white;
+      padding: 10px 0px;
+      font-weight: 700;
+      text-transform: uppercase;
+      width: 30%;
+      border: 2px solid white;
+    }
+  }
+  .villa_type {
+    .villa_slider {
+      width: 100%;
+      padding: 40px 20px 40px 20px;
+      h2 {
+        font-size: 54px;
+        text-align: center;
+        width: 100%;
+      }
+      .details {
+        padding: 4vw 0;
+        .slider_bars {
+          &::after {
+            top: 40px;
+          }
+          &::before {
+            top: 40px;
+          }
+          .bars {
+            margin-bottom: 47px;
+          }
+        }
+      }
+      .text {
+        p {
+          font-size: 18px;
+        }
+      }
+      .sold {
+        display: none;
+      }
+      .other_type {
+        justify-content: center;
+        .type {
+          margin-right: 20px;
+          width: 30vw;
+        }
+      }
+    }
+  }
+}
+@include mobile {
+  .villa_type {
+    margin-top: 72px;
+  }
+  .villa_image_sliders {
+    .sold {
+      font-size: 20px;
+    }
+    .navigation {
+      .arrows {
+        .arrow {
+          background-color: rgba(255, 255, 255, 0.9);
+          padding: 4px !important;
+          top: 50%;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          svg {
+            color: #48bfe3;
+          }
+          &:hover svg {
+            color: #5390d9;
+          }
+        }
+      }
+    }
+  }
+  .villa_type {
+    .villa_slider {
+      h2 {
+        font-size: 48px;
+      }
+      .details {
+        padding: 4vw 0;
+        flex-direction: column-reverse;
+        .slider_bars {
+          width: 100%;
+          .colorbar {
+            display: none;
+          }
+          .bars {
+            width: 100%;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            .bar {
+              background-color: rgba(255, 255, 255, 0.1);
+              padding: 14px 0;
+              &.active {
+                background-color: white;
+                padding: 14px 0;
+                color: $primary-color;
+                font-size: 24px;
+              }
+            }
+          }
+        }
+        .einfo {
+          width: 70%;
+          font-size: 24px;
+        }
+      }
+      .text {
+        display: none;
+      }
+    }
+  }
+}
+
+@include break-point-min(1440px) {
+  .villa_type {
+    .villa_slider {
+      padding: 80px 40px;
+      h2 {
+        font-size: 60px;
+      }
+      .details {
+        padding: 50px 0;
+      }
+      .text {
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+// Villa Description
+.villa_description {
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+// Room Structure
+.room_structure {
+  .nav-items {
+    list-style: none;
+    justify-content: space-evenly;
+    position: relative;
+    .nav-item {
+      padding-bottom: 15px;
+      border-bottom: 1px solid #a1a1a1;
+      width: calc(100% / 6);
+      text-align: center;
+      font-size: 20px;
+      font-weight: 400;
+      cursor: pointer;
+      &.active {
+        border-bottom: 6px solid $secondary-color;
+        color: $secondary-color;
+        padding-bottom: 10px;
+        border-radius: 2px;
+        font-weight: 700;
+      }
+    }
+  }
+  .details {
+    .details_container {
+      display: none;
+      &.active {
+        display: flex;
+      }
+    }
+    .description {
+      padding: 30px 60px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  table {
+    width: 100%;
+    margin-top: 40px;
+    border-spacing: 0;
+    font-size: 24px;
+    td,
+    th {
+      border-bottom: 1px solid #d5d5d5;
+      padding: 30px 0 10px 0;
+    }
+    td {
+      text-align: right;
+      border-spacing: 0;
+    }
+    th {
+      text-align: start;
+    }
+  }
+  .button {
+    text-align: center;
+    padding: 20px 0 100px 0;
+  }
+}
+@include tablet {
+  .room_structure {
+    .details {
+      .description {
+        padding: 30px;
+      }
+    }
+    .button {
+      text-align: center;
+      padding: 20px 0 80px 0;
+    }
+  }
+}
+@include break-point(786px) {
+  .room_structure {
+    overflow: hidden;
+    .rooms {
+      row-gap: 10px;
+      justify-content: center;
+      .room {
+        min-width: 150px;
+        border: 1px solid #a1a1a1;
+        background-color: white;
+        padding: 10px 0;
+        margin-right: 10px;
+        &.active {
+          background-color: $secondary-color;
+          border-color: $secondary-color;
+          padding: 10px 0;
+          border-width: 1px;
+          color: white;
+        }
+      }
+    }
+    .details {
+      flex-direction: column-reverse;
+
+      .description {
+        padding: 30px;
+        width: 100%;
+      }
+      .architecture {
+        width: 100%;
+      }
+    }
+    .button {
+      text-align: center;
+      padding: 20px 0 60px 0;
+    }
+  }
+}

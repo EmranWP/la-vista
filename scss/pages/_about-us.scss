@@ -1,0 +1,347 @@
+.team_outer {
+  width: 100%;
+  background-color: white;
+  filter: drop-shadow(0px 2px 15px rgba(0, 0, 0, 0.2));
+  padding: 60px 80px;
+  border-radius: 5px;
+  h2 {
+    text-align: center;
+    color: $primary-color;
+  }
+  .teams {
+    .team {
+      display: flex;
+      margin-top: 60px;
+      margin-bottom: 20px;
+      .img {
+        width: 57%;
+        min-width: 200px;
+        border-radius: 50%;
+        img {
+          width: 100%;
+        }
+      }
+      .info {
+        padding-left: 80px;
+        padding-left: 6vw;
+        h4 {
+          font-size: 32px;
+          margin-bottom: 16px;
+        }
+      }
+    }
+  }
+  .navigation {
+    display: none;
+  }
+}
+
+@include tablet {
+  .team_outer {
+    padding: 40px 60px;
+    .teams {
+      .team {
+        img {
+          max-width: 200px;
+          max-height: 200px;
+        }
+        .info {
+          padding-left: 30px;
+          h4 {
+            font-size: 28px;
+          }
+        }
+      }
+    }
+  }
+}
+@include break_point(748px) {
+  .slider_container{
+    overflow-x: hidden;
+  }
+  .team_container {
+    padding: 60px 50px;
+    margin-bottom: 0px;
+    margin-top: 40px;
+    min-height: 550px;
+  }
+  .team_outer {
+    padding: 20px 10px;
+    h2 {
+      font-size: 42px;
+      margin-top: -110px;
+    }
+    .teams {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      // overflow: hidden;
+      .team {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        min-width: 100%;
+        .img {
+          width: 100%;
+        }
+        h4 {
+          margin: 20px 0;
+        }
+        .info {
+          padding-left: 0;
+        }
+      }
+    }
+    .navigation {
+      display: block;
+      .arrows {
+        .arrow {
+          background-color: transparent;
+          box-shadow: none;
+          svg {
+            color: #dfdfdf;
+            width: 32px;
+            height: 32px;
+          }
+        }
+        .left {
+          left: -60px;
+        }
+        .right {
+          right: -60px;
+        }
+      }
+      .dots {
+        top: 50px;
+        .dot {
+          background-color: #dfdfdf;
+        }
+        .active {
+          background-color: #48bfe3;
+        }
+      }
+    }
+  }
+}
+
+.partners {
+  padding: 100px 0px;
+  h2 {
+    text-align: center;
+    color: $primary-color;
+    margin-bottom: 60px;
+  }
+  .slider_outer {
+    position: relative;
+  }
+  .slider_container {
+    overflow: hidden;
+  }
+  .slider {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    .image {
+      min-width: 25%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .navigation {
+    display: none;
+  }
+}
+
+@include tablet {
+  .partners {
+    padding: 80px 50px;
+    h2 {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+@include mobile {
+  .partners {
+    padding: 60px 10px;
+    h2 {
+      margin-bottom: 20px;
+    }
+    .slider_outer {
+      padding: 0 8vw;
+    }
+    .slider_container {
+      overflow: hidden;
+    }
+    .slider {
+      flex-wrap: nowrap;
+      .image {
+        min-width: 50%;
+        // margin: 0 20px;
+      }
+    }
+
+    .navigation {
+      display: block;
+      .arrows {
+        .arrow {
+          background-color: rgba(255, 255, 255, 0.8);
+          height: 40px;
+          width: 40px;
+          border: 1px solid #dfdfdf;
+          box-sizing: border-box;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          padding: 9px;
+          svg {
+            color: #48bfe3;
+            width: 22px;
+            height: 22px;
+          }
+        }
+        .left {
+          left: 0px;
+          display: none;
+        }
+        .right {
+          right: 0px;
+        }
+      }
+      .dots {
+        top: 20px;
+        .dot {
+          background-color: #dfdfdf;
+        }
+        .active {
+          background-color: #48bfe3;
+        }
+      }
+    }
+  }
+}
+
+.testimonial {
+  position: relative;
+  background: url(../img/testimonial-background.png) center center no-repeat;
+  background-size: cover;
+  padding: 60px;
+  color: white;
+  z-index: 1;
+  overflow-x: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      89.7deg,
+      #48bfe3 0.24%,
+      rgba(72, 191, 227, 0) 79.01%
+    );
+    z-index: -1;
+  }
+  .slider_outer {
+    position: relative;
+    margin: 40px 0 90px 0;
+    padding: 0 35px;
+  }
+  .slider_container {
+    background-color: rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    .sliders {
+      justify-content: flex-start;
+      padding: 40px 0px 80px 0px;
+      flex-wrap: nowrap;
+
+      .slider {
+        min-width: 100%;
+        padding: 0 60px;
+        p {
+          font-size: 24px;
+        }
+      }
+    }
+    .quote {
+      position: absolute;
+      &.right {
+        bottom: 20px;
+        right: 70px;
+      }
+      &.left {
+        top: 13px;
+        left: 50px;
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .navigation {
+    .arrows {
+      .arrow {
+        &.right {
+          right: 0px;
+        }
+        &.left {
+          left: 0px;
+        }
+      }
+    }
+    .dots {
+      top: -40px;
+    }
+  }
+}
+@include tablet {
+  .testimonial {
+    padding: 20px 0px;
+  }
+}
+
+@include mobile {
+  .testimonial {
+    padding: 20px 20px;
+    padding-bottom: 220px;
+    .slider_outer {
+      padding: 0;
+    }
+    .slider_container {
+      margin: 20px 0 0px 0;
+      .sliders {
+        padding: 30px 20px;
+        .slider {
+          padding: 0 20px;
+        }
+      }
+      .quote.right{
+        right: 30px;
+      }
+      .quote.left{
+        left: 25px;
+      }
+      .quote svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .navigation {
+      .arrows {
+        top: 50%;
+        .arrow {
+          &.right {
+            right: -55px;
+          }
+          &.left {
+            left: -55px;
+          }
+        }
+      }
+      .dots {
+        margin-top: 0px;
+        padding-bottom: 0px;
+        position: relative;
+        top: 20px;
+      }
+    }
+  }
+}
